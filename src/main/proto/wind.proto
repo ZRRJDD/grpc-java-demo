@@ -1,0 +1,96 @@
+syntax = "proto3";
+// edb wsd wss wst wsi wsq wsee wst wgel w_tdays w_tayoffset w_tayscount  只多不少
+option java_multiple_files = true;
+option java_package = "zrrjdd.examples.wind";
+option java_outer_classname = "WindProto";
+option objc_class_prefix = "HLW";
+package wind_compute;
+service WindCompute {
+
+    // codes, fields, beginTime=None, endTime=None, options=None, *arga,**argb
+    rpc wsd (Options) returns (WindData) {}
+
+    // codes, beginTime=None, endTime=None, options=None, *arga,**argb
+    rpc edb (Options) returns (WindData) {}
+
+    // codes, fields, options=None, *arga,**argb
+    rpc wss (Options) returns (WindData) {}
+
+    // codes, fields, options=None, *arga,**argb):
+    rpc wsee (Options) returns (WindData) {}
+
+    // codes, fields, beginTime=None, endTime=None, options=None, *arga,**argb
+    rpc wst (Options) returns (WindData) {}
+
+    // codes, fields, beginTime=None, endTime=None, options=None, *arga,**argb
+    rpc wsi (Options) returns (WindData) {}
+
+    // codes, fields, options=None, func=None, *arga,**argb
+    rpc wsq (Options) returns (WindData) {}
+
+    // tablename, options=None, *arga,**argb
+    rpc wset (Options) returns (WindData) {}
+
+    // beginTime=None, endTime=None, options=None, *arga,**argb
+    rpc tdays (Options) returns (WindData) {}
+
+    // offset, beginTime=None, options=None, *arga,**argb
+    rpc tdaysoffset (Options) returns (WindData) {}
+
+    // beginTime=None, endTime=None, options=None, *arga,**argb
+    rpc tdayscount (Options) returns (WindData) {}
+
+    // funcname, windid, options=None, *arga,**argb
+    rpc wgel (Options) returns (WindData) {}
+
+    // PortfolioName, fields, beginTime=None, endTime=None, options=None, *arga,**argb
+    rpc wpd (Options) returns (WindData) {}
+
+    // PortfolioName, fields, options=None, *arga,**argb
+    rpc wps (Options) returns (WindData) {}
+
+    // codes, fields, options=None, func=None,*arga,**argb
+    rpc tdq (Options) returns (WindData) {}
+
+    // codes, fields, beginTime=None, endTime=None, options=None, *arga,**argb
+    rpc wses (Options) returns (WindData) {}
+
+    rpc isconnected(null_) returns (result_isconnected){}
+
+
+
+}
+
+message Options {
+    // 定义 客户端输入参数内容
+    // 参数列表 codes, beginTime=None, endTime=None, options=None, *arga,**argb
+    string codes = 1;
+    string fields = 2;
+    string tablename = 3;
+    string beginTime = 4;
+    string endTime = 5;
+    string options = 6;
+    string func = 7;
+    repeated string arga = 8;
+    map<string,string>  argb = 9;
+    string productname = 10;
+    int32 offset = 11;
+    string funcname = 12;
+    string windid = 13;
+    string portfolioName = 15;
+}
+
+message WindData {
+    // 定义 返回内容
+    bytes result = 1;
+
+}
+
+message result_isconnected {
+    // 定义 返回内容
+    bool result = 1;
+}
+
+message null_ {
+    // 定义 空内容
+}
